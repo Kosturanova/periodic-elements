@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="design.css"> 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+    $("#btn").click(function(){
+    	$("rez").show();
+        $.get("https://raw.githubusercontent.com/scottashipp/periodic-elements/master/periodic/WebContent/periodic_table_of_elements.csv", function(data, status){
+        	var tekst = $('#search').val();
+        	
+
+            var hasString = data.includes(tekst);
+            if (hasString == true){
+            	$("#rez").show();
+            	$("#tag").show();
+            	$("#rez").text(tekst);
+            	$("#rez").addClass("form-wrapper");
+            	
+            	$('#tag').html('<img id="image" src="image003.gif"  width="319" height="363" alt=""/>');
+            	$("#error").hide();
+            	
+            	
+            }else{
+            	$("#error").show();
+            	 $("#rez").hide();
+            	 $("#tag").hide();
+            	 $("#error").addClass("form-wrapper");
+            	 $("#error").text("The element does not exist in the Periodic System of Elements! Enter an existing element.");
+            }
+        	
+        	
+//       	alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<h1 class="form-wrapper" style="color:#6699ff;">Periodic System of Elements </h1>
+<div class="form-wrapper">
+<input type="text" id="search" />
+    <button id="btn">Search </button>
+
+</div>
+
+
+<div id="rez">
+
+</div>
+<a id="tag"> </a>
+
+<div id="error"></div>
+
+
+</body>
+</html>
